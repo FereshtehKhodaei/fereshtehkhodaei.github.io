@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reza Talaneh | Mechanical Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --text: #1f1f1f;f
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --bg: #ffffff;
+      --soft: #f8fafc;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 0 0 56px;
+    }
+
+    /* Sticky topbar with glass effect */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 0;
+      margin-bottom: 58px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar::before {
+      content: "";
+      position: absolute;
+      left: calc(-1 * (100vw - 100%) / 2);
+      right: calc(-1 * (100vw - 100%) / 2);
+      top: 0;
+      bottom: 0;
+      background: inherit;
+      backdrop-filter: inherit;
+      -webkit-backdrop-filter: inherit;
+      z-index: -1;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .profile {
+      text-align: center;
+      position: sticky;
+      top: 82px;
+    }
+
+    .avatar {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+      margin: 0 auto 24px;
+      background: #eef2f7;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 40px -18px rgba(31, 41, 55, 0.28), 0 2px 8px rgba(31, 41, 55, 0.06);
+    }
+
+    .name {
+      font-size: 38px;
+      line-height: 1.1;
+      margin: 0 0 10px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+
+    .title {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .company {
+      margin: 0 0 22px;
+      font-size: 18px;
+      color: #8b8f98;
+      font-weight: 400;
+    }
+
+    .meta {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 22px;
+      color: var(--muted);
+      font-size: 15px;
+      text-align: left;
+    }
+
+    .meta div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .meta i {
+      width: 18px;
+      text-align: center;
+      color: var(--blue);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .meta a {
+      color: inherit;
+      word-break: break-word;
+      transition: color .15s ease;
+    }
+
+    .meta a:hover {
+      color: var(--blue);
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: border-color .15s ease, color .15s ease, background .15s ease;
+    }
+
+    .btn:hover {
+      border-color: #cbd5e1;
+      background: var(--soft);
+    }
+
+    .btn.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+
+    .btn.primary:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+
+    .content h1 {
+      font-size: 52px;
+      line-height: 1.05;
+      margin: 0 0 16px;
+      font-weight: 500;
+      letter-spacing: -0.05em;
+    }
+
+    .summary {
+      max-width: 760px;
+      font-size: 17px;
+      line-height: 1.75;
+      color: #374151;
+      margin: 0 0 42px;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 46px;
+      margin-bottom: 36px;
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section h2 {
+      position: relative;
+      font-size: 24px;
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      border-bottom: 1px solid var(--line);
+    }
+    
+        .section h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 58px;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    ul.clean {
+      margin: 0;
+      padding-left: 18px;
+      color: #374151;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .card-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .entry {
+      padding: 0 0 14px;
+    }
+
+    .entry:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .entry-title {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .entry-sub {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Publications as hoverable, linked cards */
+    .pub-link {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      margin: 0 -16px;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+    }
+
+    .pub-link:hover {
+      background: var(--blue-soft);
+      border-color: #dbeafe;
+      transform: translateX(2px);
+    }
+
+    .pub {
+      padding-left: 14px;
+      border-left: 2px solid var(--blue);
+    }
+
+    .pub-link .entry-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .pub-link .entry-title i {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* Projects as image cards */
+    .project-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .project-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 10px 24px -14px rgba(31, 41, 55, 0.25);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    .project-thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+
+    .project-body {
+      min-width: 0;
+    }
+
+    .project-body .entry-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-body .entry-title i {
+      font-size: 11px;
+      color: var(--blue);
+    }
+
+    /* Skills as badges */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: #1e40af;
+      border: 1px solid #dbeafe;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .footer {
+      margin-top: 56px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .profile {
+        position: static;
+        text-align: center; /* قرار دادن متن‌ها مثل نام و عنوان در وسط */
+      }
+
+      .avatar {
+        /* حذف margin-left: 0 برای بازگشت به حالت وسط‌چین پیش‌فرض (margin: 0 auto) */
+        margin: 0 auto 24px; 
+      }
+
+      .meta {
+        /* ترفند عالی: باکس اطلاعات تماس را کوچک کرده و در وسط قرار می‌دهد، 
+           اما متن‌های داخل آن برای زیبایی بیشتر همچنان چپ‌چین و تراز باقی می‌مانند */
+        width: fit-content;
+        margin: 18px auto 22px;
+        text-align: left;
+      }
+
+      .actions {
+        justify-content: center; /* وسط‌چین کردن دکمه دانلود رزومه */
+      }
+
+      .content h1 {
+        font-size: 42px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(var(--max), calc(100% - 28px));
+      }
+
+      .content h1 {
+        font-size: 34px;
+      }
+
+      .name {
+        font-size: 32px;
+      }
+
+      .avatar {
+        width: 180px;
+        height: 180px;
+      }
+
+      .title, .company {
+        font-size: 16px;
+      }
+
+      .summary {
+        text-align: left;
+      }
+
+      .project-card {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+  <meta name="google-site-verification" content="jvEB-kzi4F8PtKiyI7bgRAowEVCFk3Wp1jPZkVbGirI" />
+  <link rel="icon" type="image/png" href="/favicon.ico">
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">Reza Talaneh</div>
+      <div class="small">Mechanical Engineer</div>
+    </header>
+
+    <main class="hero">
+      <aside class="profile">
+        <img class="avatar" src="profile.png" alt="Reza Talaneh profile photo" />
+
+        <h2 class="name">REZA TALANEH</h2>
+        <p class="title">Mechanical Engineer</p>
+        
+
+        <div class="meta">
+          <div><i class="fa-solid fa-location-dot"></i> Mazandaran, Iran</div>
+          <div><i class="fa-solid fa-envelope"></i> <a href="mailto:rezatalaneh@gmail.com">rezatalaneh@gmail.com</a></div>
+          <div><i class="fa-solid fa-phone"></i> <a href="tel:+989117440089">+989117440089</a></div>
+          <div><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/reza-talaneh" target="_blank" rel="noreferrer">linkedin.com/in/reza-talaneh</a></div>
+          <div><i class="fa-solid fa-briefcase"></i> <a href="https://drive.google.com/drive/folders/1U69Jid18zVkMEuhCZrxil4e7ou84wZfB?usp=sharing" target="_blank" rel="noreferrer">Portfolio</a></div>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="Talaneh-CV.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download CV PDF</a>
+
+        </div>
+      </aside>
+
+
+
+      <section class="content">
+        <div class="section">
+          <h2>About</h2>
+        <p class="summary">
+Mechanical engineer with a MSc in Applied Mechanical Engineering and research experience in computational mechanics, finite element analysis, and smart materials. My research and industry experience have given me a strong foundation in analytical modeling, numerical simulation, and product development. I am seeking a PhD position where I can contribute to research in computational mechanics, mechanical design, advanced manufacturing, or sustainable product development while addressing real engineering challenges.
+        </p>
+        </div>
+
+
+        
+
+        <div class="grid-2">
+          <div class="section">
+            <h2>Research Interests</h2>
+            <ul class="clean">
+              <li>Applied mechanical design and structural analysis for industrial systems</li>
+              <li>Finite element modeling of nonlinear material and structural behavior</li>
+              <li>Smart materials and shape memory alloys; constitutive and computational modeling</li>
+              <li>Design for manufacturability and industry-oriented product development</li>
+              <li>Computational and applied continuum mechanics</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2>Education</h2>
+            <div class="card-list">
+              <div class="entry">
+                <span class="entry-title">MSc in Applied Mechanical Engineering</span>
+                <span class="entry-sub">Babol Noshirvani University of Technology, 2013-2016 | GPA: 18.45/20</span>
+              </div>
+
+              <a class="project-card" href="sma-cylinder.html">
+                <img class="project-thumb" src="sma-cylinder.jpg" alt="SMA thick walled cylinder FEA thumbnail" />
+                <div class="project-body">
+                  <span class="entry-title">SMA thick walled cylinder</span>
+                  <span class="entry-sub">Superelastic & Shape-Memory Behavior of Thick-Walled SMA Cylinders</span>
+                </div>
+              </a>
+              
+              <div class="entry">
+                <span class="entry-title">BSc in Mechanical Engineering</span>
+                <span class="entry-sub">Babol Noshirvani University of Technology, 2009-2013 | GPA: 17.33/20</span>
+              </div>
+
+              <a class="project-card" href="creep-sandwich-beams.html">
+                <img class="project-thumb" src="beam-creep.jpg" alt="Creep Sandwich Beams FEA thumbnail" />
+                <div class="project-body">
+                  <span class="entry-title">Creep in Sandwich Beams</span>
+                  <span class="entry-sub">Finite Element Analysis of Orthotropic Beams with Viscoelastic Cores</span>
+                </div>
+              </a>
+
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Publications</h2>
+          <div class="card-list">
+            <a class="entry pub-link pub" href="https://www.researchgate.net/publication/303640159_Analytical_and_finite_element_study_of_super_elasticity_behavior_and_shape_memory_effect_of_SMA_thin-walled_cylinders_under_torsional_loading" target="_blank" rel="noreferrer">
+              <span class="entry-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Analytical and Finite Element Study of Superelasticity Behavior and Shape Memory Effect of SMA Thin-Walled Cylinders under Torsional Loading</span>
+              <span class="entry-sub">Presented at the 23rd International Mechanical Engineering Conference (ISME2015)</span>
+            </a>
+            <a class="entry pub-link pub" href="/" target="_blank" rel="noreferrer">
+              <span class="entry-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Analytical and Numerical Modeling of Pseudoelastic and Shape Memory Behavior of Shape Memory Alloys under Uniaxial Tension</span>
+              <span class="entry-sub">First National Conference on Applied Mechanics</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="section">
+            <h2>Professional Experience</h2>
+            <div class="card-list">
+              <div class="entry">
+                <span class="entry-title">Engineering Manager, ABCHECK CO</span>
+                <span class="entry-sub">Oct 2017 - Present<br>Leads multidisciplinary manufacturing teams, applying engineering KPIs and data-informed decision-making across product lines.</span>
+              </div>
+              <div class="entry">
+                <span class="entry-title">Design and Development Manager</span>
+                <span class="entry-sub">Sep 2016 - Sep 2017<br>Led engineering design, prototype development, testing, and validation.</span>
+              </div>
+              <div class="entry">
+                <span class="entry-title">Research and Development Supervisor</span>
+                <span class="entry-sub">Sep 2013 - Sep 2016<br>Supervised new-product development and manufacturing-process improvement.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>Selected Design Projects</h2>
+            <div class="project-list">
+              <a class="project-card" href="https://drive.google.com/drive/folders/1Gg8ybC5wQtb2oE-c3mbKTSQsjFe3zpbp?usp=sharing" target="_blank" rel="noreferrer">
+                <img class="project-thumb" src="project-air-ring.jpg" alt="Blown Film Dual-Lip Air Ring thumbnail" />
+                <div class="project-body">
+                  <span class="entry-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Blown Film Dual-Lip Air Ring</span>
+                  <span class="entry-sub">Industrial product-development project</span>
+                </div>
+              </a>
+              <a class="project-card" href="https://drive.google.com/drive/folders/1nyWbckNPqrWSpiqPw_d8ewmyL2WtSxuD?usp=sharing" target="_blank" rel="noreferrer">
+                <img class="project-thumb" src="project-gearbox.jpg" alt="Two-Stage Parallel-Shaft Gearbox thumbnail" />
+                <div class="project-body">
+                  <span class="entry-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Two-Stage Parallel-Shaft Gearbox Design</span>
+                  <span class="entry-sub">Mechanical design and validation</span>
+                </div>
+              </a>
+              <a class="project-card" href="https://drive.google.com/drive/folders/1iv_Xt8Fy0wJS4csziyPzD3w2cPa6HMLI?usp=sharing" target="_blank" rel="noreferrer">
+                <img class="project-thumb" src="project-fea.jpg" alt="Blueprint-to-CAD Reconstruction thumbnail" />
+                <div class="project-body">
+                  <span class="entry-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Blueprint-to-CAD Reconstruction & Structural FEA</span>
+                  <span class="entry-sub">CAD reconstruction and finite-element analysis</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Skills</h2>
+          <div class="badges">
+            <span class="badge">Mechanical Design</span>
+            <span class="badge">Product Development</span>
+            <span class="badge">CAD</span>
+            <span class="badge">DFM</span>
+            <span class="badge">FEA</span>
+            <span class="badge">Engineering KPIs</span>
+            <span class="badge">Data-Informed Decision-Making</span>
+            <span class="badge">Cross-Functional Collaboration</span>
+            <span class="badge">Engineering Leadership</span>
+            <span class="badge">Agile</span>
+            <span class="badge">Scrum</span>
+            <span class="badge">Lean</span>
+            <span class="badge">SolidWorks</span>
+            <span class="badge">ANSYS</span>
+            <span class="badge">ABAQUS</span>
+            <span class="badge">MATLAB</span>
+            <span class="badge">Power BI</span>
+            <span class="badge">Azure DevOps</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Languages</h2>
+          <p class="small">
+            English: <strong>PTE Academic Overall 90/90</strong> (CEFR C2)<br>
+            German: <strong>Beginner</strong><br>
+            Persian: <strong>Native</strong>
+          </p>
+        </div>
+
+        <div class="footer">
+          © Reza Talaneh. Hosted on GitHub Pages.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
