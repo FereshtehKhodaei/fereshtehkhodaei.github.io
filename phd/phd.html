@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SMA Thick-Walled Cylinder | Reza Talaneh</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --text: #1f1f1f;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-soft: #eff6ff;
+      --bg: #ffffff;
+      --soft: #f8fafc;
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 0 0 56px;
+    }
+
+    /* Sticky topbar with glass effect */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 0;
+      margin-bottom: 58px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar::before {
+      content: "";
+      position: absolute;
+      left: calc(-1 * (100vw - 100%) / 2);
+      right: calc(-1 * (100vw - 100%) / 2);
+      top: 0;
+      bottom: 0;
+      background: inherit;
+      backdrop-filter: inherit;
+      -webkit-backdrop-filter: inherit;
+      z-index: -1;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .profile {
+      text-align: center;
+      position: sticky;
+      top: 82px;
+    }
+
+    .avatar {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+      margin: 0 auto 24px;
+      background: #eef2f7;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 40px -18px rgba(31, 41, 55, 0.28), 0 2px 8px rgba(31, 41, 55, 0.06);
+    }
+
+    .name {
+      font-size: 38px;
+      line-height: 1.1;
+      margin: 0 0 10px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+
+    .title {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .meta {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 22px;
+      color: var(--muted);
+      font-size: 15px;
+      text-align: left;
+    }
+
+    .meta div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .meta i {
+      width: 18px;
+      text-align: center;
+      color: var(--blue);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .meta a {
+      color: inherit;
+      word-break: break-word;
+      transition: color .15s ease;
+    }
+
+    .meta a:hover {
+      color: var(--blue);
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: border-color .15s ease, color .15s ease, background .15s ease, transform .15s ease;
+    }
+
+    .btn:hover {
+      border-color: #cbd5e1;
+      background: var(--soft);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+
+    .btn.primary:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+    }
+
+    /* New thesis content styles */
+    .content {
+      min-width: 0;
+    }
+
+    .project-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: #1e40af;
+      border: 1px solid #dbeafe;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .content h1 {
+      font-size: 46px;
+      line-height: 1.08;
+      margin: 0 0 12px;
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      color: var(--text);
+    }
+
+    .subtitle {
+      margin: 0 0 12px;
+      font-size: 19px;
+      line-height: 1.55;
+      color: #4b5563;
+      font-style: italic;
+    }
+
+    .project-meta {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 26px 0 40px;
+    }
+
+    .section {
+      margin-bottom: 38px;
+    }
+
+    .section h2 {
+      position: relative;
+      font-size: 24px;
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 58px;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    .section p {
+      margin: 0 0 14px;
+      color: #374151;
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .clean {
+      margin: 0;
+      padding-left: 20px;
+      color: #374151;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .clean li {
+      margin-bottom: 8px;
+    }
+
+    .figure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 22px 0 8px;
+    }
+
+    .figure-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 10px 28px -20px rgba(31, 41, 55, 0.35);
+    }
+
+    .figure-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: var(--soft);
+    }
+
+    .figure-caption {
+      padding: 12px 14px;
+      color: #4b5563;
+      font-size: 13px;
+      line-height: 1.6;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .figure-caption strong {
+      color: var(--text);
+    }
+
+    .wide-figure {
+      margin: 24px 0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 10px 28px -20px rgba(31, 41, 55, 0.35);
+    }
+
+    .wide-figure-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: center;
+      background: var(--soft);
+    }
+
+    .wide-figure-images img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .wide-figure .figure-caption {
+      text-align: center;
+    }
+
+    .methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: #1e40af;
+      border: 1px solid #dbeafe;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .footer {
+      margin-top: 56px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 920px) {
+      .topbar {
+        margin-bottom: 34px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .profile {
+        position: static;
+        text-align: center;
+      }
+
+      .avatar {
+        margin: 0 auto 24px;
+      }
+
+      .meta {
+        width: fit-content;
+        margin: 18px auto 22px;
+        text-align: left;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+
+      .content h1 {
+        font-size: 40px;
+      }
+
+      .figure-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(var(--max), calc(100% - 28px));
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .topbar .small {
+        font-size: 13px;
+        text-align: right;
+      }
+
+      .name {
+        font-size: 32px;
+      }
+
+      .avatar {
+        width: 180px;
+        height: 180px;
+      }
+
+      .title {
+        font-size: 16px;
+      }
+
+      .content h1 {
+        font-size: 32px;
+        letter-spacing: -0.04em;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .project-meta {
+        font-size: 13px;
+      }
+
+      .section h2 {
+        font-size: 22px;
+      }
+
+      .section p,
+      .clean {
+        font-size: 15px;
+        text-align: left;
+      }
+
+      .top-actions {
+        flex-direction: column;
+      }
+
+      .top-actions .btn {
+        width: 100%;
+      }
+
+      .wide-figure-images {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <link rel="icon" type="image/png" href="/favicon.ico">
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="index.html">Fereshteh Khodaei</a>
+      <div class="small">PhD | Dynamics, Control, Robotics & Neural Engineering</div>
+    </header>
+
+    <main class="hero">
+      <aside class="profile">
+        <img class="avatar" src="../profile.png" alt="profile photo" />
+
+        <h2 class="name">Fereshteh Khodaei</h2>
+        <p class="title">PhD | Dynamics, Control, Robotics & Neural Engineering</p>
+
+        <div class="meta">
+          <div><i class="fa-solid fa-location-dot"></i> Iran</div>
+          <div><i class="fa-solid fa-envelope"></i> <a href="mailto:fereshteh.khodaei@gmail.com">fereshteh.khodaei@gmail.com</a></div>
+          <div><i class="fa-solid fa-phone"></i> <a href="tel:+989119735274">+989119735274</a></div>
+          <div><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/fereshteh-khodaei" target="_blank" rel="noreferrer">linkedin.com/in/fereshteh-khodaei</a></div>
+          <div><i class="fa-solid fa-briefcase"></i> <a href="https://drive.google.com/drive/folders/1U69Jid18zVkMEuhCZrxil4e7ou84wZfB?usp=sharing" target="_blank" rel="noreferrer">Portfolio</a></div>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="Talaneh-CV.pdf" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-download"></i>
+            Download CV PDF
+          </a>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="project-label">
+          PhD Project
+        </div>
+
+        <h1>Dynamic Mapping of Local Field Potential Signals across the Layers of the Primary Visual Cortex in Primate Monkeys</h1>
+
+        <p class="subtitle">
+          Computational Analysis of Neural Signal Dynamics, Layer-Specific Activity, and Information Transmission in Primate Visual Cortex
+        </p>
+
+        <p class="project-meta">
+          Fereshteh Khodaei &nbsp;|&nbsp; PhD Thesis, 2023 &nbsp;|&nbsp;
+          K. N. Toosi University of Technology<br>
+          Supervisors: Prof. S. H. Sadati; Prof. R. Lashgari
+        </p>
+
+        <div class="top-actions">
+          <a class="btn primary" href="SMA-Thick-Walled-Cylinder-Thesis.pdf" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            Download Full Thesis Report
+          </a>
+
+          <a class="btn" href="../index.html">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Home
+          </a>
+        </div>
+
+        <div class="section">
+          <h2>Overview</h2>
+          <p>
+            This research investigated the spatial and temporal characteristics of Local Field Potential (LFP) signals recorded across different cortical layers and eccentricities of the primary visual cortex in primates. The study aimed to better understand how neural responses vary across cortical locations and how information related to visual stimuli is represented in neural signals.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Approach</h2>
+          <ul class="clean">
+		  <p>
+		  The research involved analysing experimentally recorded neural signals and investigating their morphology, polarity, response timing, and amplitude across different cortical locations. Computational approaches were used to examine stimulus-dependent neural activity and characterize layer-specific response patterns and information transmission.
+		  </p>
+          </ul>
+
+          <div class="figure-grid">
+            <figure class="figure-card">
+              <img src="images/image3.png" alt="Thick-walled cylinder under combined pressure-torsion loading">
+              <figcaption class="figure-caption">
+                <strong>Fig. 1.</strong> Thick-walled cylinder under combined pressure-torsion loading.
+              </figcaption>
+            </figure>
+
+            <figure class="figure-card">
+              <img src="images/image6.png" alt="Finite-difference grid for the thick-walled cylinder under pressure">
+              <figcaption class="figure-caption">
+                <strong>Fig. 2.</strong> Finite-difference grid for the thick-walled cylinder under pressure.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Result</h2>
+          <p>
+			The analysis identified systematic variations in LFP response characteristics across cortical layers and eccentricities. The results provided insights into the spatial and temporal organization of neural activity in the primary visual cortex and contributed to understanding how visual information is represented in neural signals.
+          </p>
+
+          <figure class="wide-figure">
+            <div class="wide-figure-images">
+              <img src="images/image4.png" alt="Finite element contour of circumferential stress">
+              <img src="images/image5.png" alt="Comparison with literature results">
+            </div>
+            <figcaption class="figure-caption">
+              <strong>Fig. 3.</strong> Circumferential stress under internal pressure: FE contour and comparison with literature results.
+            </figcaption>
+          </figure>
+
+          <figure class="wide-figure">
+            <div class="wide-figure-images">
+              <img src="images/image1.png" alt="Abaqus result for circumferential stress under pressure-torsion">
+              <img src="images/image2.png" alt="Finite difference comparison under pressure-torsion">
+            </div>
+            <figcaption class="figure-caption">
+              <strong>Fig. 4.</strong> Circumferential stress comparison under combined pressure-torsion: Abaqus and finite difference.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="section">
+          <h2>Outlook</h2>
+          <p>
+            The computational and signal-processing approaches developed in this research provide a foundation for further work involving neural interfaces, brain–machine interfaces, intelligent sensing, and data-driven modelling of complex biological systems. The experience also provides a basis for exploring the integration of neural signal processing with intelligent control and robotic technologies.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Methods &amp; Tools</h2>
+          <div class="methods">
+            <span class="badge">Local Field Potential (LFP) signal analysis</span>
+            <span class="badge">Neural signal processing</span>
+            <span class="badge">Current Source Density (CSD) analysis</span>
+            <span class="badge">Neural-network-based analysis</span>
+            <span class="badge">Time-delayed analysis</span>
+            <span class="badge">Experimental neural data analysis</span>
+            <span class="badge">Computational modelling</span>
+            <span class="badge">MATLAB</span>
+          </div>
+        </div>
+
+        <div class="footer">
+          © Fereshteh Khodaei. Hosted on GitHub Pages.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
